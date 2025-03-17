@@ -8,6 +8,10 @@ app.use(express.json());
 app.use(cors());
 
 // Routes
+
+app.get('/', (req, res)=>{
+  res.send('Hola Mundo');
+})
 app.use('/Hola-mundo', require('./routes/holaMundo'));
 
 app.listen(5000, () => {
