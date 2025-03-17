@@ -4,7 +4,7 @@ import pool from "../db.js";
 
 router.get('/get-all-person', async (req, res) => {
     try {
-        const result = await pool.query('SELECT * FROM asistente');
+        const result = await pool.query('SELECT * FROM asistente order by id asc');
         res.json(result.rows);
     } catch (error) {
         console.error(error);
