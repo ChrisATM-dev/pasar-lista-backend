@@ -1,7 +1,7 @@
 import express from "express";
 import cors from "cors";
 
-import holaMundoRouter from "./routes/holaMundo.js";
+import asistente from "./routes/asistente.js";
 
 const app = express();
 
@@ -15,7 +15,7 @@ app.get('/', (req, res) => {
 });
 
 
-app.use('/get-users', holaMundoRouter);
+app.use('/asistente', asistente);
 
 app.listen(5000, () => {
   console.log('Server is running on port 5000');
