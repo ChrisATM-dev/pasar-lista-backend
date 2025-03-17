@@ -1,4 +1,4 @@
-# node_modules
-# .env
-# createTable.sql
-# sql/
+node_modules
+.env
+createTable.sql
+sql/
