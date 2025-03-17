@@ -23,4 +23,26 @@ router.post('/add-person', async (req, res) => {
     }
 });
 
+router.patch('/confirm-person', async (req, res) => {
+    const {rut} = req.body;
+    try {
+        const result = await pool.query('UPDATE asistente SET confirmado = true WHERE rut = $1 RETURNING nombre', [rut]);
+        res.json({msg: `Se ha confirmado el usuario ${result.rows[0].nombre}`});
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Error al confirmar el usuario' });
+    }
+});
+
+router.delete('/delete-person', async (req, res) => {
+    const {rut} = req.body;
+    try {
+        const result = await pool.query('DELETE FROM asistente WHERE rut = $1 RETURNING nombre', [rut]);
+        res.json({msg: `Se ha eliminado el usuario ${result.rows[0].nombre}`});
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Error al eliminar el usuario' });
+    }
+});
+
 export default router;
