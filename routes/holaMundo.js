@@ -1,7 +1,15 @@
-const router = require('express').Router();
+import express from "express";
+const router = express.Router();
+import pool from "../db.js";
 
-router.get('/', (req, res) => {
-    res.json({hola: 'Hola Mundo'});
-})
+router.get('/', async (req, res) => {
+    try {
+        const result = await pool.query('SELECT * FROM users');
+        res.json(result.rows);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Error al obtener los usuarios' });
+    }
+});
 
-module.exports = router;
+export default router;
